@@ -5,12 +5,19 @@ import { useState } from 'react';
 import { auth } from '../src/firebase.config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'expo-router';
+import Button from './button';
+import { AntDesign } from '@expo/vector-icons';
+import Home from './home';
+import AngelContact from './angelContact';
+
 
 export default function App() {
 
   const [userMail, setUserMail] = useState('');
   const [userPass, setUserPass] = useState('');
   const router = useRouter();
+
+
 
 
   function replacePass() {
@@ -40,7 +47,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.formTitle}> Login no Sistema </Text>
-      <TextInput style={styles.formInput}
+      <TextInput
+        style={styles.formInput}
         placeholder="Informe o E-mail"
         keyboardType="email-address"
         autoCapitalize="none"
@@ -48,41 +56,31 @@ export default function App() {
         value={userMail}
         onChangeText={setUserMail}
       />
-      <TextInput style={styles.formInput}
+      <TextInput
+        style={styles.formInput}
         placeholder="Informe a senha"
         autoCapitalize="none"
         secureTextEntry
         value={userPass}
         onChangeText={setUserPass}
       />
-      <Pressable style={styles.formButton}
-        onPress={userLogin}
-      >
-        <Text style={styles.textButton}>Logar</Text>
+      <Button onPress={userLogin} label="Logar" />
+      <Pressable onPress={replacePass}>
+        <Text style={styles.forgotPassword}>
+          Esqueci a senha <AntDesign name="arrowright" size={16} color="blue" />
+        </Text>
       </Pressable>
-      <View style={styles.subContainer}>
-
-        <Pressable
-          onPress={replacePass}
-        >
-          <Text>Esqueci a senha</Text>
-        </Pressable>
+      <Pressable onPress={newUser}>
+        <Text style={styles.createNewAccount}>
+          Cadastrar <AntDesign name="arrowright" size={16} color="blue" />
+        </Text>
+      </Pressable>
 
 
-
-
-
-        <Pressable
-          onPress={newUser}
-        >
-          <Text>
-            Cadastrar
-          </Text>
-        </Pressable>
-
-      </View>
-      <StatusBar style="auto" />
     </View>
+
+
+
   );
 
 

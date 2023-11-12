@@ -11,6 +11,12 @@ export default function Home() {
     const currentUser = auth.currentUser;
     const router = useRouter();
 
+    const goToAngelContact = () => {
+        router.replace('/angelContact');
+    };
+
+
+
     if (currentUser != null) {
         //Usuário Logado
     } else {
@@ -49,6 +55,14 @@ export default function Home() {
                 >
                     <Ionicons name="person" size={32} color={'white'} />
                 </Pressable>
+
+                <Pressable onPress={goToAngelContact}>
+                    <Text style={{ color: 'white', fontSize: 18 }}>Contato "Anjo"</Text>
+                </Pressable>
+
+
+
+
             </View>
             <Text style={styles.formTitle}>Página Inicial</Text>
         </View>
